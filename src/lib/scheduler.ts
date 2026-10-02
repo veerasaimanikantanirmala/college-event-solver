@@ -6,7 +6,7 @@ export interface EventReq {
   attendees: number; duration: number; equipment: Record<string, number>;
 }
 export interface Assignment { eventId: string; roomId: string; day: number; start: number }
-export interface Result { ok: boolean; assignments: Assignment[]; steps: number; backtracks: number; failed?: string }
+export interface Result { ok: boolean; assignments: Assignment[]; steps: number; backtracks: number; failed?: string | undefined }
 
 export const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri"];
 export const SLOTS = [9, 10, 11, 12, 13, 14, 15, 16]; // start hours, each 1h

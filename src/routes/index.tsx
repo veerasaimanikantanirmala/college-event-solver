@@ -147,7 +147,7 @@ function Index() {
                         <td className="p-2 font-mono">{ev.attendees}</td>
                         <td className="p-2 font-mono">{ev.duration}</td>
                         <td className="p-2 text-xs">{Object.entries(ev.equipment).filter(([, n]) => n).map(([k, n]) => `${equip.find((q) => q.id === k)?.name ?? "?"}×${n}`).join(", ") || "—"}</td>
-                        <td className="p-2 font-mono text-xs">{a && room ? `${DAYS[a.day]} ${SLOTS[a.start]}:00–${SLOTS[a.start] + ev.duration}:00 · ${room.name}` : "—"}</td>
+                        <td className="p-2 font-mono text-xs">{a && room ? `${DAYS[a.day]} ${SLOTS[a.start]}:00–${SLOTS[a.start]! + ev.duration}:00 · ${room.name}` : "—"}</td>
                         <td className="p-2"><button aria-label="Remove event" className="text-muted-foreground hover:text-destructive" onClick={() => { setEvents(events.filter((x) => x.id !== ev.id)); setResult(null); }}>✕</button></td>
                       </tr>
                     );
