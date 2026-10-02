@@ -38,7 +38,7 @@ export function solve(events: EventReq[], rooms: Room[], equipment: Equipment[],
     for (let t = start; t < start + ev.duration; t++) {
       const i = day * S + t;
       if (busy[i]) return false;
-      for (const [k, n] of Object.entries(ev.equipment)) if (n && equipUsed.get(k)![i] + n > eqCap.get(k)!) return false;
+      for (const [k, n] of Object.entries(ev.equipment)) if (n && equipUsed.get(k)![i]! + n > eqCap.get(k)!) return false;
     }
     return true;
   };
@@ -46,14 +46,14 @@ export function solve(events: EventReq[], rooms: Room[], equipment: Equipment[],
     for (let t = start; t < start + ev.duration; t++) {
       const i = day * S + t;
       roomBusy.get(room.id)![i] = on;
-      for (const [k, n] of Object.entries(ev.equipment)) equipUsed.get(k)![i] += on ? n : -n;
+      for (const [k, n] of Object.entries(ev.equipment)) equipUsed.get(k)![i]! += on ? n : -n;
     }
   };
 
   const bt = (idx: number): boolean => {
     if (idx === order.length) return true;
     if (steps > LIMIT) return false;
-    const ev = order[idx];
+    const ev = order[idx]!;
     // smallest fitting room first to save big rooms
     const cands = rooms.filter((r) => r.type === ev.roomType && r.capacity >= ev.attendees).sort((a, b) => a.capacity - b.capacity);
     for (let day = 0; day < days; day++)

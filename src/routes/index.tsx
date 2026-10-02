@@ -175,7 +175,7 @@ function Index() {
                           <div className="border-b p-2 text-sm font-medium" style={{ gridRow: ri + 2 }}>{r.name}</div>
                           {SLOTS.map((_, si) => <div key={si} className="border-b border-l" style={{ gridRow: ri + 2, gridColumn: si + 2 }} />)}
                           {result.assignments.filter((a) => a.day === d && a.roomId === r.id).map((a) => {
-                            const ev = evById[a.eventId];
+                            const ev = evById[a.eventId]!;
                             return (
                               <div key={a.eventId} className={`m-1 rounded-sm border border-foreground/30 p-1.5 text-xs ${typeBg[r.type]}`} style={{ gridRow: ri + 2, gridColumn: `${a.start + 2} / span ${ev.duration}` }}>
                                 <div className="font-semibold">{ev.name}</div><div className="opacity-70">{ev.organizer}</div>
